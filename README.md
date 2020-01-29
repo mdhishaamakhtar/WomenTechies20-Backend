@@ -5,12 +5,12 @@
 </p>
 
 ---
-[![DOCS](https://img.shields.io/badge/Documentation-see%20docs-green?style=flat-square&logo=appveyor)](INSERT_LINK_FOR_DOCS_HERE) 
+[![DOCS](https://img.shields.io/badge/Documentation-see%20docs-green?style=flat-square&logo=appveyor)](INSERT_LINK_FOR_DOCS_HERE)
   [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](INSERT_UI_LINK_HERE)
 
 
 ## Functionalities
-- [ ]  < insert functionality >
+- [ ]  < Standalone Script for parsing csv file, generating passwords and uploading it to database >
 - [ ]  < insert functionality >
 - [ ]  < insert functionality >
 - [ ]  < insert functionality >
@@ -24,7 +24,7 @@
 	-  < insert pre-requisite >
 	-  < insert pre-requisite >
 
-* < directions to install > 
+* < directions to install >
 ```bash
 < insert code >
 ```
@@ -39,7 +39,7 @@
 
 ## Contributors
 
-* [ < INSERT NAME HERE > ](INSERT_PROFILE_URL_HERE)
+* [ < Md Hishaam Akhtar > ](INSERT_PROFILE_URL_HERE)
 * [ < INSERT NAME HERE > ](INSERT_PROFILE_URL_HERE)
 
 
@@ -50,4 +50,3 @@
 <p align="center">
 	Made with :heart: by DSC VIT
 </p>
-
