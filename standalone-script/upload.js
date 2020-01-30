@@ -1,31 +1,44 @@
-const mongoose = require('mongoose');
-const user = require('../model/User');
-const csv = require('csv-parser');
-const bcrypt = require('bcryptjs');
-const dotenv = require('dotenv');
-dotenv.config();
-// make a connection
-mongoose.connect(process.env.DB_CONNECTION, {
-  useNewUrlParser: true
-}, () => console.log("connected to DB"));
-var q = new Array();
-const fs = require('fs');
-fs.createReadStream('details1.csv')
-  .pipe(csv())
-  .on('data', async (row) => {
-    const salt = await bcrypt.genSalt(10);
-    const hashPassword = await bcrypt.hash(row.password, salt);
-    row.password = hashPassword;
-    q = q.concat(row);
-    user.collection.insert(q, function(err, docs) {
-      if (err) {
-        return console.error(err);
-      } else {
-        console.log("Inserted");
-      }
-    });
-    q = [];
-  })
-  .on('end', () => {
-    console.log('CSV file successfully processed');
-  });
+//jshint esversion:8
+const uploadData = () => {
+  const mongoose = require("mongoose");
+  const user = require("../model/User");
+  const csv = require("csv-parser");
+  const bcrypt = require("bcryptjs");
+  const dotenv = require("dotenv");
+  let q = new Array();
+  dotenv.config();
+  // make a connection
+  mongoose.connect(
+    process.env.DB_CONNECTION,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    },
+    () => {
+      console.log("Connected to db");
+
+      const fs = require("fs");
+      fs.createReadStream("details1.csv")
+        .pipe(csv())
+        .on("data", async row => {
+          // console.log(row);
+          const salt = await bcrypt.genSalt(10);
+          const hashPassword = await bcrypt.hash(row.password, salt);
+          row.password = hashPassword;
+          q.push(row);
+        })
+        .on("end", () => {
+          user.collection.insertMany(q, err => {
+            if (err) {
+              console.error(err);
+            } else {
+              console.log("CSV file successfully uploaded");
+              process.exit(0);
+            }
+          });
+        });
+    }
+  );
+};
+
+module.exports.uploadData = uploadData;
