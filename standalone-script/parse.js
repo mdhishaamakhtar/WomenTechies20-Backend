@@ -1,5 +1,5 @@
 //jshint esversion:6
-
+const uuid4 = require("uuid4");
 const csv = require("csv-parser");
 const write = require("csv-writer");
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
@@ -32,11 +32,10 @@ const csvWriter = createCsvWriter({
 // returns a promise
 var q = [];
 const fs = require("fs");
-const { generate } = require("./passwords");
 fs.createReadStream("details.csv")
   .pipe(csv())
   .on("data", row => {
-    row.password = generate();
+    row.password = uuid4();
     q = q.concat(row);
     csvWriter.writeRecords(q);
   })
