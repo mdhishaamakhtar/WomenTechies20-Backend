@@ -3,7 +3,7 @@ const uploadData = () => {
   const mongoose = require("mongoose");
   const user = require("../model/User");
   const csv = require("csv-parser");
-  const bcrypt = require("bcryptjs");
+  const { Bcrypt } = require('bcrypt-rust-wasm');
   const dotenv = require("dotenv");
   var q = [];
   dotenv.config();
@@ -20,20 +20,20 @@ const uploadData = () => {
       const fs = require("fs");
       fs.createReadStream("details1.csv")
         .pipe(csv())
-        .on("data", async row => {
-          // console.log(row);
-          const salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS));
-          const hashPassword = await bcrypt.hash(row.password, salt);
-          row.password = hashPassword;
-          q.push(row);
+        .on("data", (row) => {
+          const bcrypt = Bcrypt.new(parseInt(process.env.SALT_ROUNDS));
+          const hash = bcrypt.hashSync(row.password);
+          row.password = hash;
+          row._id = new mongoose.Types.ObjectId();
+          q=q.concat(row);
         })
-        .on("end", () => {
+        .on("end", ()=>{
           user.collection.insertMany(q, err => {
             if (err) {
               console.error(err);
             } else {
               console.log("CSV file successfully uploaded");
-              fs.unlinkSync("./details.csv");
+              //fs.unlinkSync("./details.csv");
               process.exit(0);
             }
           });

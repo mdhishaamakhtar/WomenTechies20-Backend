@@ -1,7 +1,7 @@
 //jshint esversion:8
 const router = require("express").Router();
 const User = require("../model/User");
-const bcrypt = require("bcryptjs");
+const { Bcrypt } = require('bcrypt-rust-wasm');
 const jwt = require("jsonwebtoken");
 const { registerValidation, loginValidation } = require("../validation");
 
@@ -22,23 +22,23 @@ router.post("/register", async (req, res) => {
   }
 
   //HASH PASSWORDS
-  const salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS));
-  const hashPassword = await bcrypt.hash(req.body.password, salt);
-
+  const bcrypt = Bcrypt.new(parseInt(process.env.SALT_ROUNDS));
+  const hash = bcrypt.hashSync(req.body.password);
   const user = new User({
     name: req.body.name,
     email: req.body.email,
     regNo: req.body.regNo,
     gender: req.body.gender,
-    password: hashPassword
+    password: hash
   });
-  user.save()
-      .then(data => {
-        res.json(data);
-      })
-      .catch(err => {
-        res.json({message: err});
-      });
+  user
+    .save()
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      res.json({ message: err });
+    });
 });
 
 //LOGIN ROUTE
