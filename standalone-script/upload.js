@@ -5,7 +5,7 @@ const uploadData = () => {
   const csv = require("csv-parser");
   const bcrypt = require("bcryptjs");
   const dotenv = require("dotenv");
-  let q = [];
+  var q = [];
   dotenv.config();
   // make a connection
   mongoose.connect(
