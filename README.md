@@ -12,10 +12,6 @@
 ## Functionalities
 - [ ] Standalone Script for parsing csv file, generating passwords and uploading it to database
 - [ ] A login and registration route
-- [ ] >Insert Function<
-- [ ] >Insert Function<
-- [ ] >Insert Function<
-- [ ] >Insert Function<
 
 <br>
 
