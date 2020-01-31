@@ -10,8 +10,12 @@
 
 
 ## Functionalities
-- Standalone Script for parsing csv file, generating passwords and uploading it to database
-- A login and registration route
+- [ ] Standalone Script for parsing csv file, generating passwords and uploading it to database
+- [ ] A login and registration route
+- [ ] >Insert Function<
+- [ ] >Insert Function<
+- [ ] >Insert Function<
+- [ ] >Insert Function<
 
 <br>
 
@@ -26,7 +30,7 @@
 * To setup the environment and install packages
 ```bash
 npm init
-npm install @hapi/joi bcryptjs body-parser csv-parser csv-writer dotenv express mongoose nodemon fs uuid4 jsonwebtoken
+npm install 
 ```
 
 * To start the API
@@ -45,7 +49,7 @@ node parse.js
 
 ## Contributors
 
-* [  Md Hishaam Akhtar  ]((https://github.com/mdhishaamakhtar))
+* [  Md Hishaam Akhtar  ](https://github.com/mdhishaamakhtar)
 
 
 
