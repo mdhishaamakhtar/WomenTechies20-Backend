@@ -5,7 +5,7 @@ const uploadData = () => {
   const csv = require("csv-parser");
   const bcrypt = require("bcryptjs");
   const dotenv = require("dotenv");
-  let q = new Array();
+  let q = [];
   dotenv.config();
   // make a connection
   mongoose.connect(
@@ -22,7 +22,7 @@ const uploadData = () => {
         .pipe(csv())
         .on("data", async row => {
           // console.log(row);
-          const salt = await bcrypt.genSalt(10);
+          const salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS));
           const hashPassword = await bcrypt.hash(row.password, salt);
           row.password = hashPassword;
           q.push(row);
@@ -33,6 +33,7 @@ const uploadData = () => {
               console.error(err);
             } else {
               console.log("CSV file successfully uploaded");
+              fs.unlinkSync("./details.csv");
               process.exit(0);
             }
           });

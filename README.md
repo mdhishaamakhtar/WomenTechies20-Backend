@@ -40,7 +40,6 @@
 ## Contributors
 
 * [ < Md Hishaam Akhtar > ](INSERT_PROFILE_URL_HERE)
-* [ < INSERT NAME HERE > ](INSERT_PROFILE_URL_HERE)
 
 
 

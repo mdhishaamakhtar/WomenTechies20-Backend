@@ -45,4 +45,3 @@ fs.createReadStream("details.csv")
     uploadData();
     console.log("CSV file successfully processed");
   });
-fs.unlinkSync("./details.csv");

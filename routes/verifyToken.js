@@ -1,7 +1,8 @@
-const jwt = require('jsonwebtoken');
+//jshint esversion:6
+const jwt = require("jsonwebtoken");
 
 module.exports = function(req, res, next) {
-  const token = req.header('auth-token');
+  const token = req.header("auth-token");
   if (!token) {
     return res.status(401).send("Access is denied");
   }
@@ -10,6 +11,6 @@ module.exports = function(req, res, next) {
     req.user = verified;
     next();
   } catch (err) {
-    res.status(400).send('Token is invalid.')
+    res.status(400).send("Token is invalid.");
   }
-}
+};
