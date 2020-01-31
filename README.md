@@ -1,7 +1,7 @@
 <p align="center">
 	<img src="https://user-images.githubusercontent.com/30529572/72455010-fb38d400-37e7-11ea-9c1e-8cdeb5f5906e.png" />
-	<h2 align="center"> < Insert Project Title Here > </h2>
-	<h4 align="center"> < Insert Project Description Here > <h4>
+	<h2 align="center"> Women Techies-Backend </h2>
+	<h4 align="center"> This is the backend for the premier event of DSC called Women Techies, a women centric hackathon. It will be used in the app and the website for the women techies <h4>
 </p>
 
 ---
@@ -10,10 +10,8 @@
 
 
 ## Functionalities
-- [ ]  < Standalone Script for parsing csv file, generating passwords and uploading it to database >
-- [ ]  < insert functionality >
-- [ ]  < insert functionality >
-- [ ]  < insert functionality >
+- Standalone Script for parsing csv file, generating passwords and uploading it to database
+- A login and registration route
 
 <br>
 
@@ -21,25 +19,33 @@
 ## Instructions to run
 
 * Pre-requisites:
-	-  < insert pre-requisite >
-	-  < insert pre-requisite >
+	-  Node.js installed with npm enabled
+	-  An active internet connection to connect to the cloud database
+	-  All the npm packages mentioned in the package.json
 
-* < directions to install >
+* To setup the environment and install packages
 ```bash
-< insert code >
+npm init
+npm install @hapi/joi bcryptjs body-parser csv-parser csv-writer dotenv express mongoose nodemon fs uuid4 jsonwebtoken
 ```
 
-* < directions to execute >
+* To start the API
 
 ```bash
-< insert code >
+npm start
+```
+* To run the standalone script for the parsing and uploading of CSV files
+
+```bash
+cd standalone-script/
+node parse.js
 ```
 
 <br>
 
 ## Contributors
 
-* [ < Md Hishaam Akhtar > ](INSERT_PROFILE_URL_HERE)
+* [  Md Hishaam Akhtar  ]((https://github.com/mdhishaamakhtar))
 
 
 
