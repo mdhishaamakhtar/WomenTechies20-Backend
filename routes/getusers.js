@@ -8,6 +8,9 @@ router.get("/",verify, (req, res) => {
     .select("-password")
     .then(users => {
       res.send(users);
+    })
+    .catch(err =>{
+      res.send(err);
     });
 });
 

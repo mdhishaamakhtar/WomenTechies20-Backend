@@ -8,8 +8,10 @@ router.post("/", verify, async (req, res) => {
     if (err) {
       console.error(err);
     }
+    else{
+      res.send("Pushed the URL of your repository");
+    }
   });
-  res.send("Pushed the URL of your repository");
 });
 
 module.exports = router;
