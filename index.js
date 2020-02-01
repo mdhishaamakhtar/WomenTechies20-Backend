@@ -28,8 +28,10 @@ mongoose.connect(
 const authRoute = require("./routes/auth");
 const dashboardRoute = require("./routes/dashboard");
 const postgitlink = require("./routes/postgit");
+const getUsers = require("./routes/getusers");
 app.use("/api/user", authRoute);
 app.use("/api/dashboard", dashboardRoute);
 app.use("/api/postgit", postgitlink);
+app.use("/api/getUsers", getUsers);
 
 app.listen(process.env.PORT, () => console.log("Server is up and running"));
