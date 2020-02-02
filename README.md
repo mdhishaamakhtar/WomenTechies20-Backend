@@ -18,6 +18,7 @@
 - [x] A route to display the details of all the registered users
 - [x] A route to push the link of a users github repository into his details
 - [x] A route to search any hashtag and fetch the recent instagram posts related to that hashtag
+- [x] A route for the submission of form for sponsor added
 
 <br>
 
