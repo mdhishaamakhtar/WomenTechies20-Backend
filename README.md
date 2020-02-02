@@ -5,7 +5,7 @@
 </p>
 
 ---
-[![DOCS](https://img.shields.io/badge/Documentation-see%20docs-green?style=flat-square&logo=appveyor)](INSERT_LINK_FOR_DOCS_HERE)
+[![DOCS](https://img.shields.io/badge/Documentation-see%20docs-green?style=flat-square&logo=appveyor)](https://web.postman.co/collections/9876592-02d8c703-ec49-406b-844b-cf198c11eed4?version=latest&workspace=efa91e8b-9c74-408c-8ba5-d7fec553994b)
   [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](INSERT_UI_LINK_HERE)
 
 
