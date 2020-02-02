@@ -11,13 +11,13 @@
 
 ## Functionalities
 
-- [ ] Standalone Script for parsing csv file, generating passwords and uploading it to database
-- [ ] A login route
-- [ ] A registration route
-- [ ] A route to display the details of the user logged in
-- [ ] A route to display the details of all the registered users
-- [ ] A route to push the link of a users github repository into his details
-- [ ] A route to search any hashtag and fetch the recent instagram posts related to that hashtag
+- [X] Standalone Script for parsing csv file, generating passwords and uploading it to database
+- [X] A login route
+- [X] A registration route
+- [X] A route to display the details of the user logged in
+- [X] A route to display the details of all the registered users
+- [X] A route to push the link of a users github repository into his details
+- [X] A route to search any hashtag and fetch the recent instagram posts related to that hashtag
 
 <br>
 
