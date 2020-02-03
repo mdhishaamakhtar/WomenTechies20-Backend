@@ -9,20 +9,45 @@ router.post("/", (req, res) => {
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
-  const sponsor = new Sponsor({
-    name: req.body.name,
-    company: req.body.company,
-    email: req.body.email,
-    phone: req.body.phone
+  if (
+    req.body["g-recaptcha-response"] === undefined ||
+    req.body["g-recaptcha-response"] === "" ||
+    req.body["g-recaptcha-response"] === null
+  ) {
+    return res.json({ responseCode: 1, responseDesc: "Please select captcha" });
+  }
+  var secretKey = process.env.reCAPTCHA_KEY;
+  var verificationUrl =
+    "https://www.google.com/recaptcha/api/siteverify?secret=" +
+    secretKey +
+    "&response=" +
+    req.body["g-recaptcha-response"] +
+    "&remoteip=" +
+    req.connection.remoteAddress;
+  request(verificationUrl, function(_error, _response, body) {
+    body = JSON.parse(body);
+    if (body.success !== undefined && !body.success) {
+      return res.json({
+        responseCode: 1,
+        responseDesc: "Failed captcha verification"
+      });
+    } else {
+      const sponsor = new Sponsor({
+        name: req.body.name,
+        company: req.body.company,
+        email: req.body.email,
+        phone: req.body.phone
+      });
+      sponsor
+        .save()
+        .then(data => {
+          res.json(data);
+        })
+        .catch(err => {
+          res.json({ message: err });
+        });
+    }
   });
-  sponsor
-    .save()
-    .then(data => {
-      res.json(data);
-    })
-    .catch(err => {
-      res.json({ message: err });
-    });
 });
 
-module.exports=router;
+module.exports = router;
