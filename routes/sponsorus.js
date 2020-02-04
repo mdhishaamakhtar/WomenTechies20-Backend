@@ -6,7 +6,7 @@ const { sponsorValidation } = require("../validation");
 
 router.post("/", (req, res) => {
   //VALIDATE
-  let token = req.header("g-recaptcha-response")
+  let token = req.header("g-recaptcha-response");
  
   if (!token) {
     return res.json({ responseCode: 1, responseDesc: "Please select captcha" });
