@@ -32,13 +32,11 @@ const postgitlink = require("./routes/postgit");
 const getUsers = require("./routes/getusers");
 const hashtaginsta = require("./routes/searchhash");
 const sponsorus = require("./routes/sponsorus");
-const downloadsponsors = require("./routes/downloadsponsors");
 app.use("/api/user", authRoute);
 app.use("/api/dashboard", dashboardRoute);
 app.use("/api/postgit", postgitlink);
 app.use("/api/getUsers", getUsers);
 app.use("/api/hashtaginsta", hashtaginsta);
 app.use("/api/sponsorus", sponsorus);
-app.use("/api/sponsorus/download",downloadsponsors);
 
 app.listen(process.env.PORT, () => console.log("Server is up and running"));
