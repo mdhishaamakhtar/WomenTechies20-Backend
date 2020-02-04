@@ -6,6 +6,18 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+var whitelist = ['https://womentechies.dscvit.com', 'https://prakhar0912.github.io']
+var corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+
 //MIDDLEWARE
 app.use(bodyParser.json());
 app.use(
@@ -14,7 +26,8 @@ app.use(
   })
 );
 dotenv.config();
-app.use(cors());
+app.use(cors(corsOptions));
+
 //CONNECT TO DATABASE
 mongoose.connect(
   process.env.DB_CONNECTION,
