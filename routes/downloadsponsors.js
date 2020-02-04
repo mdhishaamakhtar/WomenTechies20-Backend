@@ -16,7 +16,6 @@ router.get("/", async (_req, res) => {
   const fields = ["name","company","email","phone"];
   const headers= {fields};
   const csvString = json2csv(sponsordetail,headers);
-  console.log(csvString);
   res.setHeader("Content-disposition", "attachment; filename=sponsors.csv");
   res.status(200).send(csvString);
 });
