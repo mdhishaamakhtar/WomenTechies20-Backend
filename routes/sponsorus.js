@@ -5,23 +5,22 @@ const { sponsorValidation } = require("../validation");
 
 router.post("/", (req, res) => {
   //VALIDATE
+  let token = req.header("g-recaptcha-response")
+ 
+  if (!token) {
+    return res.json({ responseCode: 1, responseDesc: "Please select captcha" });
+  }
+
   const { error } = sponsorValidation(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
-  }
-  if (
-    req.body["g-recaptcha-response"] === undefined ||
-    req.body["g-recaptcha-response"] === "" ||
-    req.body["g-recaptcha-response"] === null
-  ) {
-    return res.json({ responseCode: 1, responseDesc: "Please select captcha" });
   }
   var secretKey = process.env.reCAPTCHA_KEY;
   var verificationUrl =
     "https://www.google.com/recaptcha/api/siteverify?secret=" +
     secretKey +
     "&response=" +
-    req.body["g-recaptcha-response"] +
+    token +
     "&remoteip=" +
     req.connection.remoteAddress;
   request(verificationUrl, function(_error, _response, body) {
