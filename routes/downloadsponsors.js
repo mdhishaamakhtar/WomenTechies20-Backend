@@ -3,7 +3,11 @@ const router = require("express").Router();
 const Sponsor = require("../model/Sponsor");
 const json2csv = require("json2csv").parse;
 let q = [];
-router.get("/", async (_req, res) => {
+router.get("/", async (req, res) => {
+  if(req.body.passowrd !== process.env.SPONSOR_PASS)
+  {
+    res.send("Incorrect Password");
+  }
   await Sponsor.find()
     .select("-_id -__v")
     .then(sponsors => {
