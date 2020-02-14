@@ -6,15 +6,15 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-var whitelist = ['https://womentechies.dscvit.com','https://prakhar0912.github.io'];
+var whitelist = ['https://womentechies.dscvit.com', 'https://prakhar0912.github.io'];
 var corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
+    origin: (origin, callback) => {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
     }
-  }
 };
 
 
