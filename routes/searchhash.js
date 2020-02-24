@@ -16,7 +16,7 @@ router.post("/", verify, (req, res) => {
     //use the id in the 
     
     let hashtagID;
-    if (length(hashtags) > 0) {
+    if (hashtags.length > 0) {
       hashtagID = hashtags[0].id;
     } else {
       return res.json({message:"Instagram API Error", error: error}).status(500);
