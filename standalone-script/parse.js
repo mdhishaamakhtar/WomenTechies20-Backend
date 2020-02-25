@@ -37,7 +37,8 @@ fs.createReadStream("details.csv")
     row.password = generator.generate({
       length: 8,
       numbers: true,
-      excludeSimilarCharacters: true
+      excludeSimilarCharacters: true,
+      lowercase: false
     });
     q = q.concat(row);
     csvWriter.writeRecords(q);
