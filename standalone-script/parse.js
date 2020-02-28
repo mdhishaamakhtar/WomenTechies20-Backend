@@ -35,7 +35,7 @@ fs.createReadStream("details.csv")
   .pipe(csv())
   .on("data", row => {
     row.password = generator.generate({
-      length: 8,
+      length: 6,
       numbers: true,
       excludeSimilarCharacters: true,
       lowercase: false
