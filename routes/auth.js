@@ -43,33 +43,31 @@ router.post("/register", async(req, res) => {
 
 //LOGIN ROUTE
 router.post("/login", async(req, res) => {
-    return res.json(req.host);
-    // //VALIDATE
-    // const { error } = loginValidation(req.body);
-    // if (error) {
-    //   return res.status(400).send(error.details[0].message);
-    // }
+    //VALIDATE
+    const { error } = loginValidation(req.body);
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    }
 
-    // //CHECK FOR EXISTING EMAIL
-    // const user = await User.findOne({
-    //   email: req.body.email
-    // });
-    // if (!user) {
-    //   return res.status(404).send("Email doesnt exist");
-    // }
-    // //PASSWORD IS CORRECT
-    // const validPass = bcrypt.verifySync(req.body.password, user.password);
-    // if (!validPass) {
-    //   return res.status(401).send("Password is wrong");
-    // }
+    //CHECK FOR EXISTING EMAIL
+    const user = await User.findOne({
+        email: req.body.email
+    });
+    if (!user) {
+        return res.status(404).send("Email doesnt exist");
+    }
+    //PASSWORD IS CORRECT
+    const validPass = bcrypt.verifySync(req.body.password, user.password);
+    if (!validPass) {
+        return res.status(401).send("Password is wrong");
+    }
 
-    // //Create a Token
-    // const token = jwt.sign(
-    //   {
-    //     _id: user._id
-    //   },
-    //   process.env.TOKEN_SECRET
-    // );
-    // res.header("auth-token", token).send(token);
+    //Create a Token
+    const token = jwt.sign({
+            _id: user._id
+        },
+        process.env.TOKEN_SECRET
+    );
+    res.header("auth-token", token).send(token);
 });
 module.exports = router;
